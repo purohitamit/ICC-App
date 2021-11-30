@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  frontend:
+    build: ./frontend
+    image: amitpurohit29/ICC-App-frontend:latest
+    container_name: ICC-App-frontend
+    ports:
+    - target: 5000
+      published: 80
+  
+  backend:
+    build: ./backend
+    image: amitpurohit29/ICC-App-backend:latest
+    container_name: ICC-App-backend
+    environment:
+      DATABASE_URI:
+    ports:
+    - target: 5000
+      published: 5000
+    
