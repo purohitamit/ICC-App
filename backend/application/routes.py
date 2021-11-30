@@ -13,7 +13,7 @@ def add_country():
     db.session.commit()
     return Response(f'Added New Country: {new_country.country_name}', mimetype='text/plain')
 
-@app.route('/view/allcountries', methods=["GET"])
+@app.route('/read/allcountries', methods=["GET"])
 def view_countries():
     all_countries = Countries.query.all()
     
