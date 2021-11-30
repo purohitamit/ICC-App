@@ -62,9 +62,4 @@ def view_players():
         )
     return jsonify(players_dict)
 
-@app.route('/delete/country/<int:id>', methods=["DELETE"])
-def delete_player(id):
-    player = Players.query.get(id)
-    db.session.delete(player)
-    db.session.commit()
-    return Response(f'Player : {player.player_name} is removed from the team', mimetype='text/plain')
+

@@ -1,7 +1,5 @@
 from application import db
 
-from application import db
-
 class Countries(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     country_name = db.Column(db.String(30), nullable = False)

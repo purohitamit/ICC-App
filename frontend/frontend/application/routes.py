@@ -42,3 +42,4 @@ def delete_player(id):
     return redirect(url_for('home'))
 
 
+=
