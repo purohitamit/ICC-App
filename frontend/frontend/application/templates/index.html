@@ -1,0 +1,44 @@
+{% extends "layout.html"%}
+
+{% block body %}
+
+<h2 style="color: blue; text-align: center;">Welcome to ICC App </h2>
+
+<hr>
+<span style="color:red">
+<h2>Countries</h2>
+</span>
+<hr>
+{% for country in all_countries %}
+<span style="color: blue;"> 
+   
+    Country ID: {{ country["id"] }}<br>
+    Country Name: {{ country["country_name"] }}<br>
+    <button type=button onclick="window.location.href='{{ url_for('add_country', id=task.id) }}'">Add Country </button>
+    <button type=button onclick="window.location.href='{{ url_for('delete_country', id=task.id) }}'">Delete Country </button>
+        
+</span>
+<span style="color: blue;">
+
+{% for player in country.players %}
+    <p>{{player.id}}</p>
+    <p>{{player.player_name}}</p>
+    {% endfor %}
+</span>
+{% endfor %}
+<hr>
+<h2> Players </h2>
+
+<hr>
+{% for players in all_players %}
+<span style="color: blueviolet;">
+       
+    Player ID: {{ player["id"] }}<br>
+    Player Name: {{ player["player_name"] }}<br>
+    <button type=button onclick="window.location.href='{{ url_for('add_player', id=player.id) }}'">Add Player</button>
+    <button type=button onclick="window.location.href='{{ url_for('delete_task', id=player.id) }}'">Delete Player </button>
+          
+</span>
+
+{% endfor%}
+{% endblock body %}
