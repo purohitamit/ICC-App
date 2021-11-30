@@ -25,7 +25,7 @@ def delete_country(id):
     return redirect(url_for('home'))
 
 
-@app.route('/add/country', methods= ['GET', 'POST'])
+@app.route('/add/player', methods= ['GET', 'POST'])
 def add_player():
     form = PlayerForm()
     all_countries=requests.get(f"http://{backend_host}/read/allcountries").json()
@@ -36,7 +36,7 @@ def add_player():
         return redirect(url_for('home'))
     return render_template("create_form.html", title = "Add a new Player", form=form)
 
-@app.route('/delete/country/<int:id>')
+@app.route('/delete/player/<int:id>')
 def delete_player(id):
     response = requests.delete(f"http://{backend_host}/delete/player/{id}")
     return redirect(url_for('home'))

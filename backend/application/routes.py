@@ -56,13 +56,13 @@ def view_players():
         players_dict ["players"].append(
             {
                 "id": player.id,
-                "country_name": player.player_name 
+                "player_name": player.player_name 
                 
             }
         )
     return jsonify(players_dict)
 
-@app.route('/delete/country/<int:id>', methods=["DELETE"])
+@app.route('/delete/player/<int:id>', methods=["DELETE"])
 def delete_player(id):
     player = Players.query.get(id)
     db.session.delete(player)
