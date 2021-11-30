@@ -28,9 +28,9 @@ def delete_country(id):
 @app.route('/add/player', methods= ['GET', 'POST'])
 def add_player():
     form = PlayerForm()
-    # all_countries=requests.get(f"http://{backend_host}/read/allcountries").json()
-    # for country in all_countries["countries"]:
-    #   form.country.choices.append((country["id"], country["country_name"]))
+        # all_countries=requests.get(f"http://{backend_host}/read/allcountries").json()
+        # for country in all_countries["countries"]:
+        # form.country.choices.append((country["id"], country["country_name"]))
     if request.method == "POST":
         response = requests.post(f"http://{backend_host}/add/player", json={"player_name": form.player_name.data} )
         return redirect(url_for('home'))
