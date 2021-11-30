@@ -1,7 +1,15 @@
 from application import db
 
-class Tasks(db.Model):
+from application import db
+
+class Countries(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(30), nullable = False)
-    completed = db.Column(db.Boolean, nullable = False, default = False)
+    country_name = db.Column(db.String(30), nullable = False)
+    players = db.relationship('Players', backref='country')
+    
+class Players(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    player_name = db.Column(db.String(30), nullable=False)
+    country_id = db.Column(db.Integer, db.ForeignKey('countries.id'), nullable=False)
+   
     
