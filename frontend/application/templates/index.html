@@ -1,23 +1,28 @@
-{% extends "layout.html" %}
-{% block body %}
-    {% for country in all_countries %}
-    <table>
-        <h2>{{ country["country_name"] }}</h2>
-        
-    </table>
-    
-    <h3>Players of {{ country["country_name"] }}</h3>
-    <table>
-        <tr>
-            <th>Name</th>
-        </tr>
-        {% for player in country["players"] %}
-        <tr>
-            <td>{{ player["player_name"] }}</td> 
-             
-        </tr>
-        {% endfor %}
-    </table>
+{% extends "layout.html"%}
 
+{% block body %}
+
+<h2 style="color: blue; text-align: center;">Welcome to the ICC App </h2>
+
+<hr>
+<span style="color:red">
+<h2>Countries and Players</h2>
+
+</span>
+<hr>
+{% for country in all_countries %}
+<span style="color: blue;"> 
+   
+Country ID: {{ country["id"] }}<br>
+Country Name: {{ country["country_name"] }}<br>
+<button type="button" onclick="window.location.href='{{ url_for('add_country', id=country.id) }}';">Add Country </button> 
+<button type="button" onclick="window.location.href='{{ url_for('delete_country', id=country.id) }}';">Delete Country </button>
+<button type="button" onclick="window.location.href='{{ url_for('update_country', id=country.id) }}';">Update Country </button><br>
+<he><hr>
+<h2>Players of {{country["country_name"]}} are:</h2>
+    {% for player in country["players"] %}       
+        {{ player["player_name"] }}
     {% endfor %}
+</span>
+{% endfor %} 
 {% endblock body %}
