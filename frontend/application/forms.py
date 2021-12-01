@@ -8,5 +8,5 @@ class CountryForm(FlaskForm):
 
 class PlayerForm(FlaskForm):
     player_name = StringField("Player Name", validators = [DataRequired()])
-    #team = SelectField("Country", choices=[])
+    country = SelectField("Country Name",validators = [DataRequired()], choices=[])
     submit = SubmitField("Add Player")

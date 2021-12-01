@@ -1,15 +1,13 @@
 from application import db
 
-from application import db
-
-class Countries(db.Model):
+class Country(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     country_name = db.Column(db.String(30), nullable = False)
-    players = db.relationship('Players', backref='country')
+    player = db.relationship('Player', backref='country')
     
-class Players(db.Model):
+class Player(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     player_name = db.Column(db.String(30), nullable=False)
-    country_id = db.Column(db.Integer, db.ForeignKey('countries.id'), nullable=False)
+    country_id = db.Column(db.Integer, db.ForeignKey('country.id'), nullable=False)
    
     
