@@ -1,7 +1,7 @@
 from application import app, db
 from application.models import Country, Player
 from flask import render_template, request, redirect, url_for, Response, jsonify
-from os import getenv
+import os
 
 #Countries
 
@@ -14,7 +14,7 @@ def add_country():
     return Response(f'Added New Country: {new_country.country_name}', mimetype='text/plain')
 
 @app.route('/read/allcountries', methods=["GET"])
-def read_countries():
+def read_all_countries():
     all_countries = Country.query.all()
     
     countries_dict = {"countries": []}
@@ -43,7 +43,7 @@ def read_country(id):
     )
 
 @app.route('/read/country/<int:id>/players', methods=["GET"])
-def read_players(id):
+def read_all_players(id):
     players = Player.query.get(id).players
     package = {"players": []}
     for player in players:
