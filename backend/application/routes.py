@@ -22,7 +22,7 @@ def read_all_countries():
     for country in all_countries:
         players = []
         for player in country.players:
-            players.append({"id" : player.id, "player_name" = player.player_name})
+            players.append({"id" : player.id, "player_name" : player.player_name})
         countries_dict ["countries"].append(
             {
                 "id": country.id,
@@ -43,8 +43,8 @@ def read_country(id):
     )
 
 @app.route('/read/country/<int:id>/players', methods=["GET"])
-def read_all_players(id):
-    players = Player.query.get(id).players
+def read_players(id):
+    players = Country.query.get(id).players
     package = {"players": []}
     for player in players:
         package["players"].append(
@@ -54,9 +54,9 @@ def read_all_players(id):
                 "country_id": player.country_id,
             }
         )
-    return jsonify(json)
+    return jsonify(package)
 
-@app.route('/update/country/<int:id>', methods=["POST"])
+@app.route('/update/country/<int:id>', methods=["PUT"])
 def update_country(id):
     package = request.json
     country = Country.query.get(id)
@@ -82,33 +82,34 @@ def add_player(country_id):
     db.session.commit()
     return Response(f'Added New Player: {new_player.player_name}', mimetype='text/plain')
 
-# @app.route('/read/allplayers', methods=["GET"])
-# def read_all_players():
-#     all_players = Player.query.all()
+@app.route('/read/allplayers', methods=["GET"])
+def read_all_players():
+    all_players = Player.query.all()
     
-#     players_dict = {"players": []}
+    players_dict = {"players": []}
     
-#     for player in all_players:
-#         players_dict ["players"].append(
-#             {
-#                 "id": player.id,
-#                 "player_name": player.player_name 
+    for player in all_players:
+        players_dict ["players"].append(
+            {
+                "id": player.id,
+                "player_name": player.player_name 
+                "country_id": player.country_id
                 
-#             }
-#         )
-#     return jsonify(players_dict)
+            }
+        )
+    return jsonify(players_dict)
 
-@app.route('/read/player/<int:id>', methods=["GET"])
-def read_player(id):
-    player = Player.query.get(id)
-    return jsonify(
-        {
-            "id": player.id,
-            "country_name": player.player_name,
-        }
-    )
+# @app.route('/read/player/<int:id>', methods=["GET"])
+# def read_player(id):
+#     player = Player.query.get(id)
+#     return jsonify(
+#         {
+#             "id": player.id,
+#             "country_name": player.player_name,
+#         }
+#     )
 
-@app.route('/update/player/<int:id>', methods=["POST"])
+@app.route('/update/player/<int:id>', methods=["PUT"])
 def update_player(id):
     package = request.json
     player = Player.query.get(id)
