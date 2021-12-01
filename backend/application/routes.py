@@ -56,6 +56,14 @@ def read_all_players(id):
         )
     return jsonify(json)
 
+@app.route('/update/country/<int:id>', methods=["POST"])
+def update_country(id):
+    package = request.json
+    country = Country.query.get(id)
+    country.country_name = package["country_name"]
+    db.session.commit()
+    return Response(f'Country name: {country.country_name} updated sucessfully', mimetype='text/plain')
+
 @app.route('/delete/country/<int:id>', methods=["DELETE"])
 def delete_country(id):
     country = Country.query.get(id)

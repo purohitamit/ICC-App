@@ -19,6 +19,16 @@ def add_country():
         return redirect(url_for('home'))
     return render_template("country_form.html", title = "Add a new country", form=form)
 
+@app.route('/update/country/<int:id>', methods = ['GET', 'POST'])
+def update_country(id):
+    form = CountryForm()
+    country = requests.get(f"http://{backend_host}/read/country/{id}").json()
+    if request.method == "POST":
+        response = requests.put(f"http://{backend_host}/update/country/{id}", json={"country_name": form.country_name.data} )
+        return redirect(url_for('home'))
+
+    return render_template("update_country.html", country=country, form=form, title = "Update")
+
 @app.route('/delete/country/<int:id>')
 def delete_country(id):
     response = requests.delete(f"http://{backend_host}/delete/country/{id}")
