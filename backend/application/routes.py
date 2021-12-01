@@ -76,7 +76,8 @@ def delete_country(id):
 @app.route('/add/player/<int:country_id>', methods= ['POST'])
 def add_player(country_id):
     package = request.json
-    new_player = Player(player_name = package["player_name"], country_id = package["country_id"])
+    new_player = Player(player_name = package["player_name"], country_id = country_id)
+    #new_player = Player(player_name = package["player_name"], country_id = package["country_id"])
     db.session.add(new_player)
     db.session.commit()
     return Response(f'Added New Player: {new_player.player_name}', mimetype='text/plain')
