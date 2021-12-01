@@ -82,19 +82,19 @@ def add_player(country_id):
     db.session.commit()
     return Response(f'Added New Player: {new_player.player_name}', mimetype='text/plain')
 
-@app.route('/read/allplayers', methods=["GET"])
-def read_all_players():
-    all_players = Country.query.all()
-    json = {"players": []}
-    for player in all_players:
-        json["players"].append(
-            {
-                "id": player.id,
-                "player_name": player.player_name,
-                "country_id": player.country_id
-            }
-        )
-    return jsonify(json)
+# @app.route('/read/allplayers', methods=["GET"])
+# def read_all_players():
+#     all_players = Country.query.all()
+#     json = {"players": []}
+#     for player in all_players:
+#         json["players"].append(
+#             {
+#                 "id": player.id,
+#                 "player_name": player.player_name,
+#                 "country_id": player.country_id
+#             }
+#         )
+#     return jsonify(json)
 
 # @app.route('/read/player/<int:id>', methods=["GET"])
 # def read_player(id):
