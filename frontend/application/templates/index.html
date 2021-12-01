@@ -16,7 +16,11 @@ Country ID: {{ country["id"] }}<br>
 Country Name: {{ country["country_name"] }}<br>
 <button type="button" onclick="window.location.href='{{ url_for('add_country', id=country.id) }}';">Add Country </button>
 <button type="button" onclick="window.location.href='{{ url_for('delete_country', id=country.id) }}';">Delete Country </button><br>
-        
+<he><hr>
+<h2>Players of {{country["country_name"]}} are:</h2>
+{% for player in country["players"] %}       
+    {{player["player_name"]}}
+{% endfor %}
 </span>
 <span style="color: blue;">
 
