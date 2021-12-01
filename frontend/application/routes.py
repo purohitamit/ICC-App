@@ -8,7 +8,7 @@ backend_host = "icc-app_backend:5000"
 @app.route('/home')
 def home():
     all_countries = requests.get(f"http://{backend_host}/read/allcountries").json()
-    return render_template('index.html', title = "Home", all_countries=all_countries["countries"])
+    return render_template('index.html', title = "Home", all_countries=all_countries["all_countries"])
 
 
 @app.route('/add/country', methods= ['GET', 'POST'])
