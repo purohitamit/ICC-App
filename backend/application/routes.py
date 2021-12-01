@@ -84,16 +84,16 @@ def add_player(country_id):
 
 @app.route('/read/allplayers', methods=["GET"])
 def read_all_players():
-    all_players = Player.query.all()
+    all_players = Country.query.all()
     
     players_dict = {"players": []}
     
     for player in all_players:
         players_dict ["players"].append(
             {
-                "id": player.id,
-                "player_name": player.player_name, 
-                "country_id": player.country_id
+                "id" : player.id,
+                "player_name" : player.player_name, 
+                "country_id" : player.country_id
                 
             }
         )
