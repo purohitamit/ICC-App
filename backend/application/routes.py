@@ -82,7 +82,7 @@ def add_player(country_id):
     return Response(f'Added New Player: {new_player.player_name}', mimetype='text/plain')
 
 @app.route('/read/allplayers', methods=["GET"])
-def read_players():
+def read_all_players():
     all_players = Player.query.all()
     
     players_dict = {"players": []}
@@ -96,6 +96,16 @@ def read_players():
             }
         )
     return jsonify(players_dict)
+
+@app.route('/read/player/<int:id>', methods=["GET"])
+def read_player(id):
+    player = Player.query.get(id)
+    return jsonify(
+        {
+            "id": player.id,
+            "country_name": player.player_name,
+        }
+    )
 
 @app.route('/update/player/<int:id>', methods=["POST"])
 def update_player(id):

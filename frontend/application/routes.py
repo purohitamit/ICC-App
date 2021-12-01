@@ -47,6 +47,16 @@ def add_player():
         return redirect(url_for('home'))
     return render_template("player_form.html", title = "Add a new player", form=form)
 
+@app.route('/update/player/<int:id>', methods = ['GET', 'POST'])
+def update_player(id):
+    form = PlayerForm()
+    player = requests.get(f"http://{backend_host}/read/player/{id}").json()
+    if request.method == "POST":
+        response = requests.put(f"http://{backend_host}/update/player/{id}", json={"player_name": form.player_name.data} )
+        return redirect(url_for('home'))
+
+    return render_template("update_player.html", player=player, form=form, title = "Update")
+
 @app.route('/delete/player/<int:id>')
 def delete_player(id):
     response = requests.delete(f"http://{backend_host}/delete/player/{id}")
