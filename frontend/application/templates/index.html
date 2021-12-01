@@ -7,7 +7,7 @@
 <hr>
 <span style="color:red">
 <h2>Countries</h2>
-<button type="button" onclick="window.location.href='{{ url_for('add_country', id=country.id) }}';">Add Country </button>
+
 </span>
 <hr>
 {% for country in all_countries %}
@@ -15,7 +15,7 @@
    
 Country ID: {{ country["id"] }}<br>
 Country Name: {{ country["country_name"] }}<br>
-
+<button type="button" onclick="window.location.href='{{ url_for('add_country', id=country.id) }}';">Add Country </button>
 <button type="button" onclick="window.location.href='{{ url_for('delete_country', id=country.id) }}';">Delete Country </button>
 <button type="button" onclick="window.location.href='{{ url_for('update_country', id=task.id) }}';">Update Country </button><br>
 <he><hr>
