@@ -51,7 +51,7 @@ def read_players(id):
             {
                 "id": player.id,
                 "player_name": player.player_name,
-                "country_id": player.country_id,
+                "country_id": player.country_id
             }
         )
     return jsonify(package)
@@ -92,7 +92,7 @@ def read_all_players():
         players_dict ["players"].append(
             {
                 "id": player.id,
-                "player_name": player.player_name 
+                "player_name": player.player_name, 
                 "country_id": player.country_id
                 
             }
