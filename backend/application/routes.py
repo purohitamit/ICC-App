@@ -22,7 +22,7 @@ def read_all_countries():
     for country in all_countries:
         players = []
         for player in country.players:
-            players.append({"id=player.id", "player_name=player.player_name"})
+            players.append({"id" : player.id, "player_name" = player.player_name})
         countries_dict ["countries"].append(
             {
                 "id": country.id,
