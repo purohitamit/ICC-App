@@ -97,15 +97,15 @@ def read_all_players():
         )
     return jsonify(json)
 
-# @app.route('/read/player/<int:id>', methods=["GET"])
-# def read_player(id):
-#     player = Player.query.get(id)
-#     return jsonify(
-#         {
-#             "id": player.id,
-#             "country_name": player.player_name,
-#         }
-#     )
+@app.route('/read/player/<int:id>', methods=["GET"])
+def read_player(id):
+    player = Player.query.get(id)
+    return jsonify(
+        {
+            "id": player.id,
+            "country_name": player.player_name,
+        }
+    )
 
 @app.route('/update/player/<int:id>', methods=["PUT"])
 def update_player(id):
