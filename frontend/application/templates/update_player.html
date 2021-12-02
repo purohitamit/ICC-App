@@ -2,7 +2,9 @@
 
 {% block body %}
 
-
+<b>Current Country: </b>{{ country.country_name}}
+<br>
+<hr>
 <hr>
 
 <div class='form'>
@@ -11,7 +13,7 @@
         {{ form.player_name.label }} {{ form.player_name }}
         {{ form.submit }}
         <br>
-        
+
    
     </form>
 </div>
