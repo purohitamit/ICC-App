@@ -6,7 +6,7 @@ import requests_mock
 
 test_data = {
     "id": 1,
-    "name": "Test Country 1",
+    "country_name": "Test Country 1",
     "players": [
         {
             "id": 1,

@@ -24,7 +24,7 @@ class TestBase(TestCase):
         # Will be called before every test
         # Create table schema
         db.create_all()
-        db.session.add(Country(country_name="Run unit test"))
+        db.session.add(Country(country_name="Run unit tests"))
         db.session.commit()
 
 
