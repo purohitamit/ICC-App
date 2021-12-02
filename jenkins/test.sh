@@ -13,6 +13,7 @@ pip3 install pytest pytest-cov flask_testing
 pip3 install -r frontend/requirements.txt 
 pip3 install -r backend/requirements.txt 
 
+mkdir test_reports
 # run pytest frontend
 
 python3 -m pytest/frontend \

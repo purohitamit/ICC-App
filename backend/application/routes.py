@@ -63,14 +63,14 @@ def update_country(id):
     country = Country.query.get(id)
     country.country_name = package["country_name"]
     db.session.commit()
-    return Response(f'Country name: {country.country_name} updated sucessfully', mimetype='text/plain')
+    return Response(f'Updated Country ID: {id} ', mimetype='text/plain')
 
 @app.route('/delete/country/<int:id>', methods=["DELETE"])
 def delete_country(id):
     country = Country.query.get(id)
     db.session.delete(country)
     db.session.commit()
-    return Response(f'Task with (ID: {id}), description: {country.country_name} is deleted', mimetype='text/plain')
+    return Response(f'Deleted Country with ID: {id} ', mimetype='text/plain')
 
 # Players
 

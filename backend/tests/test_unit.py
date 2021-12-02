@@ -4,6 +4,10 @@ from flask import url_for
 from application.models import Country
 from application.models import Player
 
+test_case = {
+                "id": 1,
+                "country_name": "Run unit tests",
+            }
 
 class TestBase(TestCase):
 
@@ -20,8 +24,7 @@ class TestBase(TestCase):
         # Will be called before every test
         # Create table schema
         db.create_all()
-        db.session.add(Country(description="Run unit test"))
-       # db.session.add(Player(description="Run unit test"))
+        db.session.add(Country(country_name="Run unit test"))
         db.session.commit()
 
 
@@ -30,3 +33,36 @@ class TestBase(TestCase):
         db.session.remove()
         db.drop_all()
 
+
+class TestRead(TestBase):
+    def test_read_all_countries(self):
+        response = self.client.get(url_for("read_all_countries"))
+        all_countries = { "countries" : [test_case]}
+        self.assertEquals(all_countries, response.json)
+
+    def test_read_country(self):
+        response = self.client.get(url_for("read_country"), id = 1)
+        self.assertEquals(test_case, response.json)
+
+class TestCreate(TestBase):
+    def test_add_country(self):
+        response = self.client.post(
+            url_for("add_country"),
+            json ={"country_name": "Testing create functionality"},
+            follow_redirects=True
+        )
+        self.assertEquals(b"Added New Country: Testing create functionality", response.data)
+       
+class TestUpdate(TestBase):
+    def test_update_country(self):
+        response = self.client.put(
+            url_for("update_country", id=1),
+            json ={"country_name": "Testing update functionality"}
+        )
+        self.assertEquals(b"Updated Country ID: 1: Testing update functionality", response.data)
+
+class TestDelete(TestBase):
+    def test_delete_task(self):
+        response = self.client.delete(url_for("delete_country", id=1))
+        self.assertEquals(b"Deleted Country with ID: 1", response.data)
+        self.assertIsNone(Country.query.get(1))
