@@ -7,15 +7,16 @@
 <hr>
 <span style="color:red">
 <h2>Countries and Players</h2>
-
+<button type="button" onclick="window.location.href='{{ url_for('add_country') }}';">Add Country </button> 
 </span>
 <hr>
+
 {% for country in all_countries %}
 <span style="color: blue;"> 
    
 <h3>Country ID: {{ country["id"] }}</h3>
 <h3>Country Name: {{ country["country_name"] }}</h3><br>
-<button type="button" onclick="window.location.href='{{ url_for('add_country', id=country.id) }}';">Add Country </button> 
+
 <button type="button" onclick="window.location.href='{{ url_for('delete_country', id=country.id) }}';">Delete Country </button>
 <button type="button" onclick="window.location.href='{{ url_for('update_country', id=country.id) }}';">Update Country </button><br><br>
 </span>
