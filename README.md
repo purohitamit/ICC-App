@@ -23,7 +23,7 @@ Deploy (deploy the app as a Stack to the Swarm)
 --------------------------------------------------------------------------------------------------------------------
 
 The first step was to generate an entity relationship diagran to define the relationship betweeen the tables which is shopwn below:
-https://snipboard.io/IZhLTe.jpg
+!https://snipboard.io/IZhLTe.jpg)
 
 
 
