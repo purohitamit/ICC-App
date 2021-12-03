@@ -52,6 +52,8 @@ class TestRead(TestBase):
         json = {"country_name": "Country 1", "id": 1}
         self.assertEquals(json, response.json)
 
+    
+
 class TestCreate(TestBase):
     def test_add_country(self):
         response = self.client.post(

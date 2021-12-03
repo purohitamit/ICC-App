@@ -36,6 +36,8 @@ class TestViews(TestBase):
     def test_home_add_country(self):
         response = self.client.get(url_for('add_country'))
         self.assert200(response)
+      
+        
 
 class TestHome(TestBase):
 
@@ -44,6 +46,7 @@ class TestHome(TestBase):
             m.get(f"http://{backend_host}/read/allcountries", json={'countries': [test_data]})
             response = self.client.get(url_for('home'))
             self.assertIn("Test Country 1", response.data.decode("utf-8"))
+            
     
 class TestAddCountry(TestBase):
 
