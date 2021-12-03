@@ -60,6 +60,6 @@ class TestAddPlayer(TestBase):
         with requests_mock.Mocker() as m:
             m.post(f"http://{backend_host}/add/player/1", text="Test response")
             m.get(f"http://{backend_host}/read/allcountries", json={'countries': [test_data]})
-            response = self.client.post(url_for('add_country'), follow_redirects=True)
+            response = self.client.post(url_for('add_player'), follow_redirects=True, json={"country": 1, "player_name": "Test Player 2"})
             self.assertIn("Test Country 1", response.data.decode("utf-8"))
     
